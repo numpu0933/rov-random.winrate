@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <title>ROV Randomizer & Win Rate</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>ROV Random Hero | เว็บสุ่มตัวละคร ROV คำนวณวินเรท</title>
+    <meta name="description" content="เว็บสุ่มตัวละครROVสำหรับคอเท้นเเละคำนวณWin Rate Mode">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <style>
+        /* Footer note style */
+        .footer-note {
+            margin-top: 20px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
+            opacity: 0.8;
+            position: relative;
+            animation: sparkle 1.5s infinite;
+        }
+
+            .footer-note img {
+                width: 16px;
+                height: 16px;
+                vertical-align: middle;
+                margin-left: 4px;
+            }
+
+        @keyframes sparkle {
+            0%,100% {
+                text-shadow: 0 0 2px #00f5ff, 0 0 4px #7b5cff;
+            }
+
+            50% {
+                text-shadow: 0 0 6px #00f5ff, 0 0 10px #7b5cff;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -44,16 +79,16 @@
 
         <footer>
             <button class="reset" onclick="resetAll()">รีเซ็ต</button>
-            
         </footer>
-        <!-- ข้อความกำกับ -->
+
+        <!-- ข้อความกำกับ Footer -->
         <p class="footer-note">
             เว็บไชต์นี้ไม่ได้แสวงหาผลกำไรใดๆ สอบถาม/แจ้งบัค @FB Chanaphum Chaiyaphum
             - เวอร์ชั่นทดสอบ 27/12/2025 Upate Edras!
+            <img src="images/emoji.png" alt="🥹">
         </p>
-
     </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
