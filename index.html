@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>ROV Randomizer & Win Rate</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="badge" id="modeToggle">ROV CONTENT MODE</div>
+            <div class="header-actions">
+                <div id="lockToggle" class="lock unlocked" onclick="toggleDuplicate()" title="กันฮีโร่ซ้ำ"></div>
+                <button class="primary" id="randomAllBtn" onclick="randomAll()">สุ่มครบทีม</button>
+                <button id="chaosToggle" class="primary" onclick="toggleChaos()">มั่วเลน (ปิด)</button>
+            </div>
+        </header>
+
+        <div id="content">
+            <!-- ROV Content Mode Board -->
+            <div id="board" class="board"></div>
+
+            <!-- ROV Win Rate Mode -->
+            <div id="winrateMode" class="winrate-mode hidden">
+                <div class="input-group">
+                    <label>อัตราการชนะปัจจุบัน (%)</label>
+                    <input type="number" id="currentWin" placeholder="เช่น 50">
+                </div>
+                <div class="input-group">
+                    <label>อัตราการชนะที่ต้องการ (%)</label>
+                    <input type="number" id="targetWin" placeholder="เช่น 60">
+                </div>
+                <div class="input-group">
+                    <label>จำนวนแมตช์ทั้งหมด</label>
+                    <input type="number" id="totalMatches" placeholder="เช่น 100">
+                </div>
+                <button class="primary" onclick="calculateWinRate()">คำนวณ Win Rate</button>
+                <div id="winrateResult" class="winrate-result"></div>
+            </div>
+        </div>
+
+        <footer>
+            <button class="reset" onclick="resetAll()">รีเซ็ต</button>
+            
+        </footer>
+        <!-- ข้อความกำกับ -->
+        <p class="footer-note">
+            เว็บไชต์นี้ไม่ได้แสวงหาผลกำไรใดๆ สอบถาม/แจ้งบัค @FB Chanaphum Chaiyaphum
+            - เวอร์ชั่นทดสอบ 27/12/2025 Upate Edras!
+        </p>
+
+    </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
