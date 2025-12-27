@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://rov-winrate-herorandom.netlify.app/sitemap.xml
