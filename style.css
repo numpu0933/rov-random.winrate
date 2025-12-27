@@ -432,6 +432,10 @@ footer {
 }
 /* ================= MOBILE LANDSCAPE LIKE PC ================= */
 @media (max-width: 600px) and (orientation: landscape) {
+    body {
+        justify-content: center; /* จัดกลางเหมือน PC */
+    }
+
     #app {
         width: 95%;
         max-width: 1200px;
@@ -439,40 +443,44 @@ footer {
         margin-top: 20px;
     }
 
-    header {
-        flex-direction: row; /* เหมือน PC */
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .header-actions {
-        gap: 10px;
-        flex-wrap: wrap;
-        justify-content: flex-start; /* เหมือน PC */
-    }
-
     .board {
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* บังคับเรียง 5 อันแนวนอน */
+        grid-template-columns: repeat(5, minmax(0, 1fr)); /* 5 การ์ดแนวนอน */
         gap: 16px;
         justify-items: center;
-        width: 100%;
     }
 
     .slot {
         padding: 14px;
         border-radius: 18px;
-        width: 100%;
+        width: 100%; /* ให้การ์ดเต็ม column */
+        box-sizing: border-box;
+        transition: all 0.3s ease; /* ทำให้ smooth */
     }
 
     .hero img {
         margin-top: 10px;
+        width: 100%;
+        height: auto;
+        transition: all 0.3s ease;
+    }
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-actions {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 
     button {
         padding: 10px;
-        font-size: 14px; /* เหมือน PC */
+        font-size: 14px;
+        transition: all 0.3s ease;
     }
 
     footer {
@@ -483,5 +491,6 @@ footer {
         footer button {
             min-width: 120px;
             padding: 10px 20px;
+            transition: all 0.3s ease;
         }
 }
