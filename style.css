@@ -436,6 +436,7 @@ footer {
         width: 95%;
         max-width: 1200px;
         padding: 0;
+        margin-top: 20px;
     }
 
     header {
@@ -452,13 +453,22 @@ footer {
     }
 
     .board {
-        grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); /* เหมือน PC */
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* บังคับเรียง 5 อันแนวนอน */
         gap: 16px;
         justify-items: center;
+        width: 100%;
     }
 
-    .slot { padding: 14px; border-radius: 18px; }
-    .hero img { margin-top: 10px; }
+    .slot {
+        padding: 14px;
+        border-radius: 18px;
+        width: 100%;
+    }
+
+    .hero img {
+        margin-top: 10px;
+    }
 
     button {
         padding: 10px;
@@ -470,5 +480,8 @@ footer {
         gap: 12px;
     }
 
-    footer button { min-width: 120px; padding: 10px 20px; }
+        footer button {
+            min-width: 120px;
+            padding: 10px 20px;
+        }
 }
