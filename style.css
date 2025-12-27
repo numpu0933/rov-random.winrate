@@ -548,3 +548,39 @@ footer {
         box-shadow: inset 0 0 15px rgba(0,245,255,.3), 0 0 20px rgba(0,245,255,.25);
     }
 }
+/* ================= POWER ICON STYLE ================= */
+#powerToggle {
+    z-index: 999; /* ป้องกันปุ่มอยู่หลัง element อื่น */
+    background: linear-gradient(135deg,#00f5ff,#7b5cff);
+    color: #000;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    #powerToggle.active {
+        background: #8b0000;
+        color: #fff;
+        box-shadow: 0 0 15px #ff5555aa;
+    }
+
+/* Power Icon on Hero */
+.hero .power-icon {
+    position: absolute;
+    bottom: 25px; /* ปรับสูง/ต่ำตรงนี้ */
+    left: 12px;
+    width: 30px;
+    height: 30px;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.4s ease, transform 0.8s ease;
+}
+
+    .hero .power-icon.show {
+        opacity: 1;
+    }
+
+

@@ -9,7 +9,7 @@ let randomAllFinished = 0;
 
 /* ================= DATA ================= */
 const roles = [
-    { id: 'dsl', name: 'DARK SLAYER', pool: ['Airi', 'Astrid', 'Birrow', 'Bright', 'Kaine', 'Murad', 'Ryoma', 'Volkath', 'Wukong', 'Yan', 'Zuka', 'Bolt Baron', 'Marja', 'Rourke', 'Zanis', 'Tachi', 'Taara', 'Wonder Woman', 'Florentino', 'Lu Bu', 'Edras', 'Superman', 'Skud', 'Roxie', 'Allain', 'Amily', 'Biron', 'Bijan', 'Charlotte', 'Maloch', 'Dextra', 'Errol', "Kil'Groth", 'Yena', 'Veres', 'Riktor', 'Qi', 'Heino', 'Omen', 'Mortos'] },
+    { id: 'dsl', name: 'DARK SLAYER', pool: ['Airi', 'Astrid', 'Birrow', 'Bright', 'Kaine', 'Murad', 'Ryoma', 'Volkath', 'Wukong', 'Yan', 'Zuka', 'Bolt Baron', 'Marja', 'Rourke', 'Zanis', 'Tachi', 'Taara', 'Wonder Woman', 'Florentino', 'Lu Bu', 'Edras', 'Superman', 'Skud', 'Roxie', 'Allain', 'Amily', 'Biron', 'Bijan', 'Charlotte', 'Maloch', 'Dextra', 'Errol', "Kil'Groth", 'Yena', 'Veres', 'Riktor', 'Qi', 'Heino', 'Omen', 'Mortos', 'Max', 'Wiro'] },
     { id: 'jgl', name: 'JUNGLE', pool: ['Airi', 'Aoi', 'Astrid','Birrow','Bolt Baron','Bright','Butterfly',"Eland\'orr",'Enzo','Fennik','Florentino','Kaine','Keera','Kriknak','Lindis','Lu Bu','Marja','Murad','Nakroth','Paine','Quillen','Rourke','Ryoma','Sinestrea','Tachi','Taara','Tulen','Volkath','Wonder Woman','Wukong','Yan','Zanis','Zephys','Zill','Zuka','Edras']},
     { id: 'mid', name: 'MID', pool: ['Aleister', 'Aleister', 'Annette', 'Azzen\'Ka', 'Bolt Baron', 'Bonnie', 'D\'Arcy', 'Diaochan', 'Dirak', 'Iggy', 'Ignis', 'Ilumia', 'Ishar', 'Jinnar', 'Kahlii', 'Krixi', 'Lauriel', 'Liliana', 'Lorion', 'Mganga', 'Natalya', 'Preyta', 'Raz', 'Sephera', 'Tulen', 'Veera', 'Yue', 'Zata', 'Heino', 'Alice', 'Goverra'] },
  { id:'adc', name:'ABYSSAL', pool:['Celica','Capheny','Elsu','Erin','Fennik','Hayate','Laville','Lindis','Moren','Slimz','Stuart','Teeri',"Tel\'Annas",'Thorne','Valhein','Violet','Wisp','Yorn'] },
@@ -161,20 +161,28 @@ function checkSpecial(){
 }
 
 /* ================= MODE SWITCH ================= */
-modeToggle.addEventListener('click',()=>{
-  winrateModeActive=!winrateModeActive;
+modeToggle.addEventListener('click', () => {
+    winrateModeActive = !winrateModeActive;
 
-  modeToggle.textContent = winrateModeActive
-    ? 'ROV WIN RATE MODE'
-    : 'ROV CONTENT MODE';
+    modeToggle.textContent = winrateModeActive
+        ? 'ROV WIN RATE MODE'
+        : 'ROV CONTENT MODE';
 
-  board.style.display = winrateModeActive?'none':'grid';
-  randomAllBtn.style.display = winrateModeActive?'none':'inline-flex';
-  chaosBtn.style.display = winrateModeActive?'none':'inline-flex';
-  lockToggle.style.display = winrateModeActive?'none':'inline-flex';
+    // ของเก่าเดิม
+    board.style.display = winrateModeActive ? 'none' : 'grid';
+    randomAllBtn.style.display = winrateModeActive ? 'none' : 'inline-flex';
+    chaosBtn.style.display = winrateModeActive ? 'none' : 'inline-flex';
+    lockToggle.style.display = winrateModeActive ? 'none' : 'inline-flex';
 
-  winrateDiv.classList.toggle('hidden',!winrateModeActive);
+    winrateDiv.classList.toggle('hidden', !winrateModeActive);
+
+    // ซ่อน/แสดงปุ่มสุ่มพลังแฝงของกูเอง
+    const powerBtn = document.getElementById('powerToggle');
+    if (powerBtn) {
+        powerBtn.style.display = winrateModeActive ? 'none' : 'inline-flex';
+    }
 });
+
 
 /* ================= WIN RATE ================= */
 function calculateWinRate() {
@@ -229,20 +237,16 @@ function calculateWinRate() {
     void winrateResult.offsetWidth;
     winrateResult.classList.add('animate');
 }
-
-
-
-
 /* ================= RESET ================= */
-function resetAll(){
-  usedHeroes.clear();
-  specialAudioPlayed=false;
-  render();
+function resetAll() {
+    usedHeroes.clear();
+    specialAudioPlayed = false;
+    render();
 
-  currentWin.value='';
-  targetWin.value='';
-  totalMatches.value='';
-  winrateResult.textContent='';
+    currentWin.value = '';
+    targetWin.value = '';
+    totalMatches.value = '';
+    winrateResult.textContent = '';
 }
 
 function saveImage() {
@@ -266,3 +270,92 @@ function saveImage() {
 
 /* ================= INIT ================= */
 render();
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    render(); // สร้าง slot และ heroBox ทั้งหมดก่อน
+
+    const powerBtn = document.getElementById('powerToggle');
+    let powerOn = false;
+
+    const powerImages = [
+        'Images/power1.png',
+        'Images/power2.png',
+        'Images/power3.png',
+        'Images/power4.png',
+        'Images/power5.png',
+        'Images/power6.png',
+        'Images/power7.png',
+        'Images/power8.png',
+        'Images/power9.png',
+    ];
+
+    function randomPower() {
+        // ซ่อน icon ถ้า WinRate mode เปิด
+        const winrateVisible = !document.querySelector('.winrate-mode.hidden');
+        if (winrateVisible) return;
+
+        const slots = document.querySelectorAll('.slot');
+        slots.forEach(slot => {
+            const heroBox = slot.querySelector('.hero');
+            if (!heroBox) return;
+
+            const imgSrc = powerImages[Math.floor(Math.random() * powerImages.length)];
+            let icon = slot.querySelector('.power-icon');
+            if (!icon) {
+                icon = document.createElement('img');
+                icon.classList.add('power-icon');
+                slot.appendChild(icon);
+            }
+
+            icon.src = imgSrc;
+            icon.style.position = 'absolute';
+            icon.style.left = '6px';
+            icon.style.bottom = '60px';
+            icon.style.width = '30px';
+            icon.style.height = '30px';
+            icon.style.opacity = '0';
+            icon.style.transform = 'rotateY(0deg)';
+            icon.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+
+            setTimeout(() => {
+                icon.style.transform = 'rotateY(360deg)';
+                icon.style.opacity = '1';
+            }, 10);
+        });
+    }
+
+    function removePowerIcons() {
+        // ถ้าอยู่ใน WinRate mode ให้ซ่อนเฉยๆ
+        const winrateVisible = !document.querySelector('.winrate-mode.hidden');
+        const icons = document.querySelectorAll('.power-icon');
+        icons.forEach(icon => {
+            if (winrateVisible) {
+                icon.style.opacity = '0'; // แค่ซ่อน
+            } else {
+                icon.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+                icon.style.opacity = '0';
+                icon.style.transform = 'rotateY(0deg)';
+                setTimeout(() => {
+                    if (icon.parentNode) icon.parentNode.removeChild(icon);
+                }, 400);
+            }
+        });
+    }
+
+    powerBtn.addEventListener('click', () => {
+        powerOn = !powerOn;
+        if (powerOn) {
+            powerBtn.classList.add('active');
+            powerBtn.style.background = '#8b0000';
+            powerBtn.textContent = "สุ่มพลังแฝง (เปิด)";
+            randomPower();
+        } else {
+            powerBtn.classList.remove('active');
+            powerBtn.style.background = '';
+            powerBtn.textContent = "สุ่มพลังแฝง (ปิด)";
+            removePowerIcons();
+        }
+    });
+});
